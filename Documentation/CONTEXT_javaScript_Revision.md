@@ -13,9 +13,34 @@
 | Prior languages | Java (3 years ago, rusty) + C++ (university, rusty) — OOP concepts exist |
 | Prior JS exposure | One Node.js project (The Briefing Room Widget) — heavy scaffolding, could read with explanation, could not write from scratch |
 | Goal | Write JavaScript independently before next project |
-| Learning style | Hands-on, learn by doing, one concept at a time |
-| Responds well to | Analogies, real-world Node.js context, Java/C++ comparisons |
+| Learning style | Hands-on, learn by doing — wants FULL coverage of each subset before moving on |
+| Responds well to | Analogies, real-world Node.js context, Java/C++ comparisons, properties + limitations + patterns before exercises |
 | Environment | Linux terminal, Node.js v20.19.2, micro/nvim editor, no desktop |
+
+---
+
+## Important Teaching Note
+
+Learner explicitly requested full subset coverage before moving on. The teaching structure must follow:
+
+```
+Superset (e.g. Loops)
+└── Subset 1 (e.g. for loop) — FULL coverage
+    ├── Definition
+    ├── Why it exists
+    ├── Full syntax — all variations
+    ├── Properties
+    ├── Limitations
+    ├── Common patterns
+    ├── Common bugs
+    ├── Comparison vs similar tools
+    ├── Exercises — build complexity gradually
+    └── Security connection
+└── Subset 2 — full coverage
+...
+```
+
+Do NOT move to the next subset until the current one is fully understood and exercised.
 
 ---
 
@@ -24,7 +49,9 @@
 ```
 javaScript_Revision/
 ├── Documentation/
-│   └── CONTEXT_javaScript_Revision.md    ← this file
+│   ├── CONTEXT_javaScript_Revision.md    ← this file
+│   └── archive/
+│       └── CONTEXT_javaScript_Revision_old_v1.md
 ├── Lessons/
 │   ├── Lesson1/
 │   │   ├── variables.js
@@ -39,16 +66,22 @@ javaScript_Revision/
 │   ├── Lesson2/
 │   │   ├── Lesson2-notes.md
 │   │   └── scope_Exercise1.js
-│   └── Lesson3/
-│       ├── conditional_Ex1.js
-│       ├── conditional_Ex2.js
-│       ├── conditional_Ex3.js
-│       ├── conditional_Ex4.js
-│       └── conditional_Switch.js
+│   ├── Lesson3/
+│   │   ├── conditional_Ex1.js
+│   │   ├── conditional_Ex2.js
+│   │   ├── conditional_Ex3.js
+│   │   ├── conditional_Ex4.js
+│   │   └── conditional_Switch.js
+│   └── Lesson4/
+│       ├── loops_Ex1.js
+│       ├── loops_Ex2.js
+│       ├── loops_Ex3.js
+│       └── loops_Ex5.js  ← pending — not yet written
 └── Notes/
     ├── js-fundamentals-chapter-01.md
     ├── js-fundamentals-chapter-02.md
-    └── js-fundamentals-chapter-03.md
+    ├── js-fundamentals-chapter-03.md
+    └── js-fundamentals-chapter-04.md  ← pending generation
 ```
 
 **Remote:** https://github.com/ddevMetal/javascript_Revision.git
@@ -59,84 +92,55 @@ javaScript_Revision/
 ## Session Log
 
 ### Session 1 — April 2, 2026
-
-**Topics covered:**
-- Variables — `let`, `const`, `var`
-- Data Types — string, number, boolean, null, undefined
-- Functions — declaration, expression, arrow function
-- Bonus: template literals, `typeof` operator, `===` vs `==`, modulus `%` operator
-
-**Concepts that clicked well:**
-- Template literals — discovered independently
-- Connecting `let` to loop counters unprompted
-- `findLargest` logic correct even when syntax was wrong
-
-**Concepts that needed extra time:**
-- Difference between parameter and argument
-- Keeping function styles separate
-
----
+**Topics:** Variables, Data Types, Functions, template literals, typeof, ===
 
 ### Session 2 — April 2, 2026
-
-**Topics covered:**
-- Scope — global, local (function), block
-- Why `var` is dangerous — function-scoped vs block-scoped
-- Encapsulation
-
-**Concepts that clicked well:**
-- Understood encapsulation instinctively
-- Connected scope to real-world security
-
-**Key terminology introduced:**
-- Encapsulation, ReferenceError, Shadowing
-
----
+**Topics:** Scope — global, local, block, encapsulation, var danger
 
 ### Session 3 — April 3, 2026
+**Topics:** Conditionals — if/else/else if, comparison operators, logical operators, ternary, switch, defensive programming, ?., ??
+
+### Session 4 — April 4, 2026
 
 **Topics covered:**
-- Conditionals — `if`, `else if`, `else`
-- Comparison operators — `===`, `!==`, `>`, `<`, `>=`, `<=`
-- Logical operators — `&&`, `||`, `!`
-- Ternary operator — `condition ? valueIfTrue : valueIfFalse`
-- Nested ternary — three outcomes in one line
-- `switch` statement — fall-through pattern, `break`, `default`
-- `switch(true)` pattern — valid but `if/else` cleaner for ranges
-- Short-circuit evaluation — JavaScript stops at first true condition
-- Defensive programming — introduction and mindset
-- Optional chaining `?.` — ES2020
-- Nullish coalescing `??` — ES2020
-- `??` vs `||` — key difference
+- `??` vs `||` recap — locked in via REPL testing
+- `for` loop — full coverage
+  - Basic syntax — count up, count down, step, array iteration
+  - Properties and limitations
+  - Common patterns — flag-controlled, break, continue, nested loops
+  - Common bugs — off by one, accidental global, infinite loop, modifying array while looping
+  - Security connection — brute force attacks, rate limiting, account lockout
+- `while` loop — basic syntax, flag-controlled pattern, while(true) + break
+- `do...while` — runs at least once, proven with i=10 condition i<5
+- Compound assignment operators — `+=`, `-=`, `*=`, `/=`
 
 **Files created:**
 | File | What it practised |
 |------|------------------|
-| `conditional_Ex1.js` | Basic if/else — temperature checker |
-| `conditional_Ex2.js` | else if chain — grade calculator |
-| `conditional_Ex3.js` | Logical operators — club entry, if/else + ternary versions |
-| `conditional_Ex4.js` | switch — day type checker with `?.` and `??` |
-| `conditional_Switch.js` | switch(true) pattern — grade ranges |
+| `loops_Ex1.js` | for loop — count up, even numbers, count down |
+| `loops_Ex2.js` | while loop — count to 5, doubling until > 100 |
+| `loops_Ex3.js` | do...while — count to 5, prove runs once with false condition |
 
-**Errors made and corrected:**
-- Used `<=` instead of `<` in loop — processed undefined
-- Missing `let` on loop variable — accidental global
-- Missing `return` in ternary function — returned undefined
-- Missing closing bracket in `console.log()`
+**Pending:**
+- `loops_Ex5.js` — for loop full coverage exercise — NOT YET WRITTEN
+- forEach full coverage — NOT YET TAUGHT
+- Chapter 4 formal notes — NOT YET GENERATED
+
+**Important feedback from learner:**
+- Teaching was too shallow — syntax only, missing properties/limitations/patterns
+- Requested full subset coverage before moving on — now standard approach
+- Learner independently identified flag-controlled loop pattern
+- Needs clearer exercise specifications — less ambiguity
 
 **Concepts that clicked well:**
-- `else if` ordering — most restrictive condition first
-- Short-circuit evaluation — understood instinctively
-- Switch fall-through — implemented correctly without being told
-- Discovered `?.`, `??`, `.toLowerCase()` independently
+- `??` vs `||` — understood after REPL demonstration
+- Flag-controlled loops — identified pattern independently
+- Compound assignment operators — picked up immediately
+- `while(true)` danger — understood intuitively
 
-**Bonus concepts introduced (not in original plan):**
-- Optional chaining `?.`
-- Nullish coalescing `??`
-- `??` vs `||` distinction
-- Defensive programming mindset
-- `.toLowerCase()` for case-insensitive matching
-- Array iteration with `for` loop — preview of next session
+**Concepts that needed extra time:**
+- `do...while` — confused about what "runs once" means in practice
+- Ambiguous exercise wording
 
 ---
 
@@ -151,7 +155,7 @@ javaScript_Revision/
 | Functions — declaration, expression, arrow | ✅ Done | 1 | All 3 styles solid |
 | Scope — local, global, block | ✅ Done | 2 | Solid. Encapsulation understood. |
 | Conditionals — `if/else`, ternary, switch | ✅ Done | 3 | Solid. All operators covered. |
-| Loops — `for`, `while`, `forEach` | 🔲 Next | — | Previewed `for` in Ex4 |
+| Loops — `for`, `while`, `forEach` | 🔄 In Progress | 4 | for + while + do...while covered. forEach pending. Full exercise pending. |
 
 ### Tier 2 — Arrays and Objects
 
@@ -204,83 +208,71 @@ javaScript_Revision/
 
 ## Next Session Checklist
 
-**Topic:** Loops — `for`, `while`, `forEach`
+**Topic:** Loops — complete remaining subsets
 
-**Start the session by asking:**
-> "You used a for loop in Exercise 4 already. Tell me in your own words — what are the three parts of a for loop?"
+**Start by asking:**
+> "Without looking at notes — what are the four common bugs in a for loop?"
 
-**Then ask what they remember from last session:**
-> "Without looking at notes — what is the difference between `??` and `||`?"
+**Then complete in this order:**
 
-**If they remember correctly** — proceed to Loops.
-**If they don't** — quick 2 minute recap, then continue.
+1. **loops_Ex5.js** — for loop full exercise — 4 tasks already specified:
+   - Print array elements with position number starting from 1
+   - Use `break` to find "charlie" and stop
+   - Use `continue` to skip multiples of 3
+   - Nested loop — 3x3 multiplication table
 
-**Key things to cover:**
-- `for` loop — init, condition, update
-- `while` loop — when iteration count is unknown
-- `do...while` — runs at least once (they know this from C++)
-- `forEach` — array method, cleaner than `for` for arrays
-- `break` and `continue` — control loop flow
-- Nested loops — loops inside loops
+2. **forEach — full coverage** following the full subset structure
+   - Definition, why it exists
+   - Full syntax — element, index, array parameters
+   - Properties and limitations — no break, no continue, array only
+   - Common patterns and bugs
+   - Comparison vs for loop
+   - Exercise
+   - Security connection
 
-**C++/Java comparison:**
-- `for` and `while` syntax nearly identical
-- `forEach` is JavaScript specific
-- `do...while` exists in both — good connection point
+3. **Wrap up Loops** — summary, generate chapter 4 notes
 
 **Watch for:**
-- Using `<=` instead of `<` — made this mistake in Ex4
-- Forgetting `let` on loop variable — made this in Ex4
-- Infinite loops — no update step
+- `<=` instead of `<` — repeated mistake
+- Missing `let` on loop variable — repeated mistake
+- Trying to use `break`/`continue` inside forEach
 
 ---
 
-## Conventions Used in This Repo
+## Integrated Learning Plan
+
+| Phase | Focus | Status |
+|-------|-------|--------|
+| Phase 1 | JS Fundamentals — Tiers 1–6 | 🔄 In Progress |
+| Phase 2 | Web Dev — HTML, CSS basics, Express, full-stack project | 🔲 Pending |
+| Phase 3 | Web Security — CSIT328 + dedicated sessions | 🔲 Pending |
+| Phase 4 | Intermediate JS + Security capstone project | 🔲 Pending |
+
+### Security connections per tier
+
+| Tier | Security Topic |
+|------|---------------|
+| Tier 1 — Foundations | Defensive programming, input validation, brute force concept |
+| Tier 2 — Arrays & Objects | Injection mindset, never trust req.body |
+| Tier 3 — Functions | XSS — how malicious scripts get injected |
+| Tier 4 — Async | CSRF, CORS, same-origin policy |
+| Tier 5 — Node.js | Secrets management, path traversal, dependency vulnerabilities |
+| Tier 6 — OOP | JWT, session management, role-based access control |
+
+---
+
+## Conventions
 
 | Convention | Example |
 |------------|---------|
 | Lesson files | `Lessons/LessonX/topicName.js` |
 | Exercise files | `topicName_ExN.js` |
-| Rough session notes | `Lessons/LessonX/LessonX-notes.md` |
 | Formal chapter notes | `Notes/js-fundamentals-chapter-XX.md` |
 | Context file | `Documentation/CONTEXT_javaScript_Revision.md` |
 | Commit style | `"Lesson X complete — topics covered"` |
 
 ---
 
-## Future Plan — After Tier 6
-
-Once all 6 tiers are complete, a new intermediate-to-advanced learning plan will be created covering:
-
-- Error handling — `try/catch/finally`
-- Defensive programming in depth
-- `?.` and `??` formally
-- Input validation patterns in Express
-- API design patterns
-- Authentication — JWT, sessions
-- Database interaction — MongoDB/PostgreSQL
-- Testing — Jest basics
-- Performance and security fundamentals
-
----
-
-## How to Update This File
-
-At the end of every session:
-
-1. Add a new entry under **Session Log**
-2. Mark completed topics as ✅ in **Progress Tracker**
-3. Update **Next Session Checklist**
-4. Commit and push:
-
-```bash
-git add Documentation/CONTEXT_javaScript_Revision.md
-git commit -m "docs: update context — Lesson X complete"
-git push
-```
-
----
-
-*Last updated: April 3, 2026 — after Session 3*
-*Current level: Tier 1 — 5 of 6 topics complete*
-*Next: Loops — last topic in Tier 1*
+*Last updated: April 4, 2026 — after Session 4 (partial)*
+*Current level: Tier 1 — Loops in progress*
+*Next: loops_Ex5.js, then forEach full coverage, then Chapter 4 notes*
